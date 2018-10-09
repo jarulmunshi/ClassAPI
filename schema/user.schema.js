@@ -7,26 +7,25 @@ const user=db.define('tbl_user',{
         autoIncrement:true
     },
     username:{
-        type:Sequelize.STRING,
-        allowNull:false
+        type:Sequelize.STRING
 
     },
     user_role:{
-        type:Sequelize.STRING,
-        allowNull:false
+        type:Sequelize.STRING
     },
     mobile_no:{
-        type:Sequelize.STRING,
-        allowNull:false
+        type:Sequelize.STRING
     },
     email:{
-        type:Sequelize.STRING,
-        allowNull:false
+        type:Sequelize.STRING
 
+    },
+    password:{
+        type:Sequelize.STRING
     },
     state_temp:{
         type:Sequelize.INTEGER,
-        allowNull:false
+        defaultValue:0
 
     }
 });
