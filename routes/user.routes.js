@@ -1,6 +1,6 @@
 const router=require('express');
 const route=router();
-const {insert,post1} = require('../controller/user.controller');
+const {insert,post1,getAll} = require('../controller/user.controller');
 route.post('/',(req,res)=>{
     insert(req.body,(err,result)=>{
         //console.log(req.body)
@@ -31,8 +31,6 @@ route.post('/login',(req,res)=>{
         }
         else if(result == null){
             res.statusCode=404;
-            console.log("Not Valid");
-            console.log(result);
             res.json({msg:"NOT VALID"});
 
         }
@@ -42,6 +40,26 @@ route.post('/login',(req,res)=>{
             res.json(result);
             console.log(result);
             //console.log(result.token);
+        }
+    })
+});
+route.get('/',(req,res)=> {
+    getAll((err, result) => {
+        if (err) {
+            res.statusCode = 400;
+            res.json(err);
+        }
+        else if(result == null){
+            res.statusCode=404;
+            console.log(result);
+            res.json({msg:"NOT VALID"});
+
+        }
+        else {
+            res.statusCode = 200;
+            //console.log("========");
+            console.log(result);
+            res.json(result);
         }
     })
 });
