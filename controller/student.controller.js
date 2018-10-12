@@ -26,3 +26,12 @@ exports.post1=(body,id,done)=>{
         done(err);
     })
 };
+exports.getAll = (done) => {
+    stud.findAll().then((stud) => {
+        if(stud){
+            done(null,stud)
+        }
+        else
+            done("no data found")
+    })
+};

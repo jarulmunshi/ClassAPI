@@ -1,6 +1,6 @@
 const router=require('express');
 const route=router();
-const {insert,post1,getParentId,up} = require('../controller/student.controller');
+const {insert,post1,getParentId,getAll} = require('../controller/student.controller');
 
 route.post('/',(req,res)=> {
     insert(req.body, (err, result) => {
@@ -44,6 +44,23 @@ route.post('/',(req,res)=> {
                    })
                 }
             });
+        }
+    })
+});
+route.get('/',(req,res)=> {
+    getAll((err, result) => {
+        if (err) {
+            res.statusCode = 400;
+            res.json(err);
+        }
+        else if(result == null){
+            res.statusCode=404;
+            res.json({msg:"NOT VALID"});
+
+        }
+        else {
+            res.statusCode = 200;
+            res.json(result);
         }
     })
 });
