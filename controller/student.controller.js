@@ -27,11 +27,26 @@ exports.post1=(body,id,done)=>{
     })
 };
 exports.getAll = (done) => {
-    stud.findAll().then((stud) => {
+    stud.findAll({where:{state_temp:{$eq:0}}}).then((stud) => {
         if(stud){
             done(null,stud)
         }
         else
             done("no data found")
+    })
+};
+exports.del = (id,done) =>{
+    stud.find({where:{student_id:id}}).then((d)=>{
+            if(d){
+                d.updateAttributes({state_temp:1}).then((d1)=>{
+                    done(null,d1);
+                }).catch((err)=>{
+                    done(err);
+                })
+            }
+        }
+
+    ).catch((err)=>{
+        done(err);
     })
 };
