@@ -4,6 +4,7 @@ const multer = require('multer');
 
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
+        console.log("dest");
         cb(null, 'uploads/')
     },
     filename: function (req, file, cb) {
@@ -91,7 +92,7 @@ route.put('/:id',(req,res)=>{
     })
 });
 route.post('/fileupload', upload.single('fileData'), (req, res) => {
-    console.log(req);
+    console.log(req.body.img._parts);
     res.json("Done")
 });
 module.exports=route;
