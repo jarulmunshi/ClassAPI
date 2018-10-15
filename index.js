@@ -10,6 +10,10 @@ app.use(bodyparser.urlencoded({extended:true}));
 app.use('/user',userRoute);
 app.use('/stud',studRoute);
 
+app.get('/fileupload', (req, res) => {
+    res.sendFile(__dirname + '/index.html');
+});
+
 app.listen(3000,(err)=> {
     if(err){
         console.log(err);
