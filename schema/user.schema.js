@@ -23,6 +23,9 @@ const user=db.define('tbl_user',{
     password:{
         type:Sequelize.STRING
     },
+    profile_pic:{
+      type:Sequelize.STRING
+    },
     state_temp:{
         type:Sequelize.INTEGER,
         defaultValue:0

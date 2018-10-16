@@ -40,19 +40,23 @@ route.post('/',(req,res)=>{
     })
 });
 route.post('/login',(req,res)=>{
+    console.log("Hi");
     post1(req.body,(err,result)=>{
         if (err){
             res.statusCode=400;
+            console.log(err);
             res.json(err);
         }
         else if(result == null){
             res.statusCode=404;
+            console.log("DATA")
             res.json({msg:"NOT VALID"});
 
         }
         else {
             res.statusCode=200;
             //res.setHeader(token,result.token);
+            //console.log(result);
             res.json(result);
         }
     })
@@ -74,9 +78,8 @@ route.get('/',(req,res)=> {
         }
     })
 });
-route.put('/:id',(req,res)=>{
-    console.log(req.body);
-    up(req.params.id,req.body,(err,result)=>{
+route.put('/fileupload/:id',upload.single('profile_pic'),(req,res)=>{
+    up(req.params.id,req.body,req.file.filename,(err,result)=>{
         if(err){
             res.statusCode=400;
             res.json(err);
@@ -91,8 +94,9 @@ route.put('/:id',(req,res)=>{
         }
     })
 });
-route.post('/fileupload', upload.single('fileData'), (req, res) => {
-    console.log(req.body.img._parts);
-    res.json("Done")
-});
+// route.post('/fileupload', upload.single('fileData'), (req, res) => {
+//     //console.log(req.body.img._parts);
+//     console.log(req);
+//     res.json("Done")
+// });
 module.exports=route;

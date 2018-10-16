@@ -1,4 +1,4 @@
-const user=require('./../schema/user.schema')
+const user=require('./../schema/user.schema');
 const {db} = require('../config/database');
 exports.insert =(body,done)=>{
     user.create(body).then((d)=>{
@@ -24,7 +24,8 @@ exports.getAll = (done) => {
             done("no data found")
     })
 };
-exports.up = (id,body,done) =>{
+exports.up = (id,body,path,done) =>{
+    body.profile_pic=path;
     user.update(body,{where:{user_id:id}}).then((d)=>{
         done(null,d);
     }).catch((err)=>{
