@@ -40,7 +40,7 @@ route.post('/',(req,res)=>{
     })
 });
 route.post('/login',(req,res)=>{
-    console.log("Hi");
+    console.log("Login");
     post1(req.body,(err,result)=>{
         if (err){
             res.statusCode=400;

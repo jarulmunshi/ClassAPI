@@ -14,12 +14,14 @@ app.use('/stud',studRoute);
 app.use('/file',fileRoute);
 app.set('port',process.env.PORT || 3000);
 app.use(express.static(path.join(__dirname,'uploads')));
+app.use(express.static(path.join(__dirname,'fileUploads')));
 app.listen(3000,(err)=> {
     if(err){
         console.log(err);
     }
     console.log("server connected");
 });
+
 
 
 
