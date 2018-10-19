@@ -32,3 +32,28 @@ exports.up = (id,body,path,done) =>{
         done(err);
     });
 };
+
+exports.up1 = (id,done) =>{
+    user.find({where:{user_id:id}}).then((d)=>{
+            if(d.status==0){
+                console.log(d.status);
+                d.updateAttributes({status:1}).then((d1)=>{
+                    done(null,d1);
+                }).catch((err)=>{
+                    done(err);
+                })
+            }
+            else {
+                console.log(d.status);
+                d.updateAttributes({status:0}).then((d1)=>{
+                    done(null,d1);
+                }).catch((err)=>{
+                    done(err);
+                })
+            }
+        }
+
+    ).catch((err)=>{
+        done(err);
+    })
+};

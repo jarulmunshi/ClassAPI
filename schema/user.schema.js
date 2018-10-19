@@ -30,6 +30,10 @@ const user=db.define('tbl_user',{
         type:Sequelize.INTEGER,
         defaultValue:0
 
+    },
+    status:{
+        type:Sequelize.INTEGER,
+        defaultValue:0
     }
 });
 

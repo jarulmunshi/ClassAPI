@@ -17,7 +17,7 @@ const storage = multer.diskStorage({
 const upload = multer({ storage: storage });
 
 
-const {insert,post1,getAll,up} = require('../controller/user.controller');
+const {insert,post1,getAll,up,up1} = require('../controller/user.controller');
 route.post('/',(req,res)=>{
     insert(req.body,(err,result)=>{
         //console.log(req.body)
@@ -74,6 +74,23 @@ route.get('/',(req,res)=> {
         }
         else {
             res.statusCode = 200;
+            res.json(result);
+        }
+    })
+});
+route.put('/:id',(req,res)=>{
+    //console.log(req);
+    up1(req.params.id,(err,result)=>{
+        if(err){
+            res.statusCode=400;
+            res.json(err);
+        }
+        else if(result == null){
+            res.statusCode=404;
+            res.json({msg:"NOT PUT"});
+        }
+        else {
+            res.statusCode=200;
             res.json(result);
         }
     })
