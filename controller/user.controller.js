@@ -9,7 +9,11 @@ exports.insert =(body,done)=>{
 };
 exports.post1 = (body,done) =>{
     user.find({where:{email:body.email,password:body.password}}).then((d)=>{
-            done(null,d);
+            if(d.status === 1){
+                done(null,d);
+            }else {
+                done(null,{msg:'Not verified'});
+            }
     }).catch(err=>{
         done(err);
     })

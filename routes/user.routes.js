@@ -40,7 +40,6 @@ route.post('/',(req,res)=>{
     })
 });
 route.post('/login',(req,res)=>{
-    console.log("Login");
     post1(req.body,(err,result)=>{
         if (err){
             res.statusCode=400;
@@ -49,14 +48,13 @@ route.post('/login',(req,res)=>{
         }
         else if(result == null){
             res.statusCode=404;
-            console.log("DATA")
             res.json({msg:"NOT VALID"});
 
         }
         else {
             res.statusCode=200;
             //res.setHeader(token,result.token);
-            //console.log(result);
+            console.log(result);
             res.json(result);
         }
     })
