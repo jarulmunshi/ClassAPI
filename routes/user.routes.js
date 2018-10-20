@@ -54,7 +54,6 @@ route.post('/login',(req,res)=>{
         else {
             res.statusCode=200;
             //res.setHeader(token,result.token);
-            console.log(result);
             res.json(result);
         }
     })

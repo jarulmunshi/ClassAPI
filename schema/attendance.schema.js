@@ -37,7 +37,7 @@ attendance.sync({force:false}).then((res)=>{
                 type:Sequelize.INTEGER
             },
             status:{
-                type:Sequelize.BOOLEAN
+                type:Sequelize.INTEGER
             },
             date:{
                 type:Sequelize.DATE

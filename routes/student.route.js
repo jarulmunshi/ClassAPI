@@ -7,12 +7,10 @@ route.post('/',(req,res)=> {
         if (err) {
             res.statusCode = 400;
             res.json(err);
-            console.log(err);
         }
         else if (result == null) {
             res.statusCode = 404;
             res.json({msg: "NOT VALID"});
-            console.log("Not Valid");
         }
         else {
             getParentId(req.body,(err, result) => {
@@ -30,7 +28,6 @@ route.post('/',(req,res)=> {
                        if (err) {
                            res.statusCode = 400;
                            res.json(err);
-                           console.log(err);
                        }
                        else if (result == null) {
                            res.statusCode = 404;

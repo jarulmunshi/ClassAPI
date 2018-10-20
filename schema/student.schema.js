@@ -23,7 +23,7 @@ const stud = db.define('tbl_student',{
             defaultValue:0
         }
     }
-)
+);
 
 
 stud.sync({force:false}).then((res)=>{
