@@ -18,6 +18,7 @@ const upload = multer({ storage: storage });
 
 const {insert,getAll} = require('../controller/file.controller');
 route.post('/',upload.single('file'),(req,res)=>{
+    console.log("Hi");
     insert(req.body,req.file.filename,(err,result)=>{
         //console.log(req.body)
         if (err){
