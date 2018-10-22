@@ -7,6 +7,8 @@ const fileRoute = require('./routes/file.route');
 const attendanceRoute = require('./routes/attendance.route');
 const bodyparser = require('body-parser');
 const path=require('path');
+var d=new Date();
+console.log("dvghzd",d.getDate());
 app.use(bodyparser.json());
 app.use(bodyparser.urlencoded({extended:true}));
 

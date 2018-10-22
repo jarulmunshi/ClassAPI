@@ -9,7 +9,8 @@ const storage = multer.diskStorage({
     },
     filename: function (req, file, cb) {
         console.log("Node");
-        let extension = file.mimetype.includes("png") && ".png" || ".jpg";
+        let extension = file.mimetype.includes("pdf") && ".pdf" ||".png" || ".jpg" ;
+        console.log("=======",file.mimetype);
         cb(null, file.fieldname + '-' + Date.now() + extension);
     }
 });
@@ -108,9 +109,9 @@ route.put('/fileupload/:id',upload.single('profile_pic'),(req,res)=>{
         }
     })
 });
-// route.post('/fileupload', upload.single('fileData'), (req, res) => {
-//     //console.log(req.body.img._parts);
-//     console.log(req);
-//     res.json("Done")
-// });
+route.post('/fileupload', upload.single('file-to-upload'), (req, res) => {
+    //console.log(req.body.img._parts);
+    console.log(req);
+    res.json("Done")
+});
 module.exports=route;

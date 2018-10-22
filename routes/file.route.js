@@ -9,7 +9,7 @@ const storage = multer.diskStorage({
     },
     filename: function (req, file, cb) {
         console.log("Node");
-        let extension = file.mimetype.includes("png") && ".png" || ".jpg";
+        let extension = file.mimetype.includes("pdf") && ".pdf" ||".png" || ".jpg" ;
         cb(null, file.fieldname + '-' + Date.now() + extension);
     }
 });
