@@ -9,8 +9,12 @@ const storage = multer.diskStorage({
     },
     filename: function (req, file, cb) {
         console.log("Node");
-        let extension = file.mimetype.includes("pdf") && ".pdf" ||".png" || ".jpg" ;
-        cb(null, file.fieldname + '-' + Date.now() + extension);
+        let extArray = file.originalname.split(".");
+        let extension = extArray[extArray.length - 1];
+        console.log(file);
+        cb(null, file.fieldname + '-' + Date.now()+ '.' +extension)
+        // let extension = file.mimetype.includes("pdf") && ".pdf" ||".png" || ".jpg" ;
+        // cb(null, file.fieldname + '-' + Date.now() + extension);
     }
 });
 

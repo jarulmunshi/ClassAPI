@@ -19,7 +19,7 @@ exports.insert =(body,done)=>{
 };
 
 exports.post1=(body,id,done)=>{
-    body.parent_id=id;
+    body.parentid=id;
     stud.create(body).then((d)=>{
         done(null,d);
     }).catch((err)=>{

@@ -1,5 +1,6 @@
 var Sequelize = require('sequelize');
 var {db} = require('../config/database');
+var parent = require('../schema/parent.schema');
 const stud = db.define('tbl_student',{
         student_id:{
             type:Sequelize.INTEGER,
@@ -15,7 +16,7 @@ const stud = db.define('tbl_student',{
         dob:{
             type:Sequelize.DATE
         },
-        parent_id:{
+        parentid:{
             type:Sequelize.INTEGER,
         },
         state_temp:{
@@ -25,11 +26,11 @@ const stud = db.define('tbl_student',{
     }
 );
 
-
+stud.belongsTo(parent,{foreignKey:'parent_id'});
 stud.sync({force:false}).then((res)=>{
     console.log("Stud Table Created");
 }).catch((err)=>{
     console.log(err);
-})
+});
 
 module.exports = stud;

@@ -1,5 +1,6 @@
 var Sequelize = require('sequelize');
 var {db} = require('../config/database');
+var user = require('../schema/user.schema');
 const file = db.define('tbl_file',{
         file_id:{
             type:Sequelize.INTEGER,
@@ -18,7 +19,7 @@ const file = db.define('tbl_file',{
         file_description:{
             type:Sequelize.STRING
         },
-        user_id:{
+        userid:{
             type:Sequelize.INTEGER
         },
         state_temp:{
@@ -26,13 +27,12 @@ const file = db.define('tbl_file',{
             defaultValue:0
         }
     }
-)
-
-
+);
+file.belongsTo(user,{foreignKey:'user_id'});
 file.sync({force:false}).then((res)=>{
     console.log("file Table Created");
 }).catch((err)=>{
     console.log(err);
-})
+});
 
 module.exports = file;

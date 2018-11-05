@@ -1,12 +1,13 @@
 var Sequelize = require('sequelize');
 var {db} = require('../config/database');
+var student = require('../schema/student.schema');
 const attendance = db.define('tbl_attendance',{
         attendance_id:{
             type:Sequelize.INTEGER,
             primaryKey:true,
             autoIncrement:true
         },
-        student_id:{
+        studentid:{
             type:Sequelize.INTEGER
         },
         status:{
@@ -20,8 +21,7 @@ const attendance = db.define('tbl_attendance',{
             defaultValue:0
         }
     }
-)
-
+);
 
 attendance.sync({force:false}).then((res)=>{
     console.log("Attendance Table Created");
@@ -33,7 +33,7 @@ attendance.sync({force:false}).then((res)=>{
                 primaryKey:true,
                 autoIncrement:true
             },
-            student_id:{
+            studentid:{
                 type:Sequelize.INTEGER
             },
             status:{
@@ -47,17 +47,16 @@ attendance.sync({force:false}).then((res)=>{
                 defaultValue:0
             }
         }
-    )
+    );
 
-
-    attendance.sync({force:true}).then((res)=>{
+    attendance.sync({force:false}).then((res)=>{
         console.log("Attendance Table Created");
     }).catch((err)=>{
         console.log(err);
-    })
+    });
 
     module.exports = attendance;
     console.log(err);
-})
+});
 
 module.exports = attendance;
