@@ -77,4 +77,21 @@ route.delete('/:id',(req,res)=>{
         }
     })
 });
+// route.post('/:name',(req,res)=> {
+//     getAllName(req.params.name,(err, result) => {
+//         if (err) {
+//             res.statusCode = 400;
+//             res.json(err);
+//         }
+//         else if(result == null){
+//             res.statusCode=404;
+//             res.json({msg:"NOT VALID"});
+//
+//         }
+//         else {
+//             res.statusCode = 200;
+//             res.json(result);
+//         }
+//     })
+// });
 module.exports=route;

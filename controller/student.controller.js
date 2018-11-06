@@ -35,6 +35,15 @@ exports.getAll = (done) => {
             done("no data found")
     })
 };
+// exports.getAllName = (name,done) => {
+//     stud.findAll({where:{state_temp:{$eq:0},student_name:name}}).then((stud) => {
+//         if(stud){
+//             done(null,stud)
+//         }
+//         else
+//             done("no data found")
+//     })
+// };
 exports.del = (id,done) =>{
     stud.find({where:{student_id:id}}).then((d)=>{
             if(d){

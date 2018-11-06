@@ -6,52 +6,54 @@ const date = new Date();
 const todayDate = date.getFullYear()+"-"+(date.getMonth()+1)+"-"+date.getDate();
 exports.insert =(body,done)=>{
     console.log(body);
-    // attendance.find({
-    //     where:{
-    //         $and: [
-    //             sequelize.where(sequelize.fn('date', sequelize.col('date')), '=', todayDate),
-    //             { studentid: body.studentid }
-    //         ]
-    //     }
-    // }).then((updateAttendence) => {
-    //     if(updateAttendence){
-    //         attendance.update(body, {
-    //             where:{
-    //                 studentid: body.studentid
-    //             }
-    //         }).then((updatedAttendence) => {
-    //             if(updatedAttendence){
-    //                 attendance.find({
-    //                     where: {
-    //                         studentid: body.studentid
-    //                     }
-    //                 }).then((attendenceData) => {
-    //                     done(null, attendenceData)
-    //                 }).catch((err) => {
-    //                     done(err)
-    //                 })
-    //             }else {
-    //                 done("Problem updating attendence")
-    //             }
-    //         }).catch((err) => {
-    //             done(err)
-    //         })
-    //     }else {
-    //         attendance.create(body).
-    //         then((newAttendenceRecord) => {
-    //             done(null, newAttendenceRecord)
-    //         }).
-    //         catch((err) => {
-    //             done(err)
-    //         })
-    //     }
-    // });
-    body.date=Date(body.date);
-    attendance.create(body).then((d)=>{
-        done(null,d);
-    }).catch((err)=>{
-        done(err);
-    })
+    attendance.find({
+        where:{
+            $and: [
+                sequelize.where(sequelize.fn('date', sequelize.col('createdAt')), '=', todayDate),
+                { studentid: body.studentid }
+            ]
+        }
+    }).then((updateAttendence) => {
+        console.log("Attendance >>>",updateAttendence);
+        if(updateAttendence){
+            attendance.update(body, {
+                where:{
+                    studentid: body.studentid
+                }
+            }).then((updatedAttendence) => {
+                if(updatedAttendence){
+                    attendance.find({
+                        where: {
+                            studentid: body.studentid
+                        }
+                    }).then((attendenceData) => {
+                        done(null, attendenceData)
+                    }).catch((err) => {
+                        done(err)
+                    })
+                }else {
+                    done("Problem updating attendence")
+                }
+            }).catch((err) => {
+                done(err)
+            })
+        }else {
+            body.date=Date(body.date);
+            attendance.create(body).
+            then((newAttendenceRecord) => {
+                done(null, newAttendenceRecord)
+            }).
+            catch((err) => {
+                done(err)
+            })
+        }
+    });
+    // body.date=Date(body.date);
+    // attendance.create(body).then((d)=>{
+    //     done(null,d);
+    // }).catch((err)=>{
+    //     done(err);
+    // })
 };
 exports.getAll = (done) => {
     //const date=CAST(d as date);
@@ -61,7 +63,7 @@ exports.getAll = (done) => {
             //console.log(stud);
             console.log(Object.getOwnPropertyNames(stud).length);
             if(Object.getOwnPropertyNames(stud).length !=1){
-                console.log("^^^^",stud);
+                //console.log("^^^^",stud);
                 done(null,stud);
             }else if(Object.getOwnPropertyNames(stud).length ==1){
                 done(null,stud);

@@ -3,7 +3,7 @@ const route=router();
 const {insert,getAll} = require('../controller/attendance.controller');
 
 route.post('/',(req,res)=>{
-    console.log("attendance body",req.body);
+    //console.log("attendance body",req.body);
     insert(req.body,(err,result)=>{
         //console.log(req.body)
         if (err){
